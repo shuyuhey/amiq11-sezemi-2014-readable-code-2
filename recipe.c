@@ -25,7 +25,7 @@ void print_recipe(const char *path)
     if (fp == NULL) { perror("fopen"); exit(EXIT_FAILURE); }
     char recipe[RECIPE_MAX_LEN];
     /* print one recipe */
-    if (fgets(recipe, RECIPE_MAX_LEN, fp) != NULL) {
+    while (fgets(recipe, RECIPE_MAX_LEN, fp) != NULL) {
         printf("%s", recipe);
     }
 }
