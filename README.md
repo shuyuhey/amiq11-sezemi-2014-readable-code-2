@@ -13,3 +13,15 @@ amiq11-sezemi-2014-readable-code-2
   CCC    CCC
     CCCCCC
 ```
+
+使い方 (spec2)
+------
+以下のコマンドで実行できます。
+```
+$ git clone https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2.git
+$ cd amiq11-sezemi-2014-readable-code-2
+$ gcc -o recipe.bin recipe.c -std=gnu99
+$ ./recipe.bin
+```
+
+メモはmemo.mdにspecごとに記述しています。
