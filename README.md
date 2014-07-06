@@ -14,7 +14,7 @@ amiq11-sezemi-2014-readable-code-2
     CCCCCC
 ```
 
-使い方 (spec4) 
+使い方 (spec5) 
 ------
 以下のコマンドで実行できます。
 ```
