@@ -1,16 +1,17 @@
-//! gcc -o recipe.bin recipe.c -W -Wall -O3 -std=gnu99 
-/* 
- * 
+//! gcc -o recipe.bin recipe.c -W -Wall -O3 -std=gnu99
+/*
+ *
  * Author:   Makoto Shimazu <makoto.shimaz@gmail.com>
- * URL:      https://amiq11.tumblr.com               
- * License:  MIT License                             
- * Created:  2014-07-06                                  
- *  
+ * URL:      https://amiq11.tumblr.com
+ * License:  MIT License
+ * Created:  2014-07-06
+ *
  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 #include "recipe.h"
 
 /* params */
@@ -40,7 +41,8 @@ static recipe_t *create_new_recipe(const char *name)
 {
     recipe_t *recipe = (recipe_t *)mymalloc(sizeof(recipe_t));
     /* init variables */
-    sscanf(name, "%ms", &recipe->name);  /* copy from name to tmp with allocation */
+    recipe->name = (char *)mymalloc(sizeof(char) * strlen(name) + 1);
+    sscanf(name, "%s", recipe->name);
     recipe->id = create_new_id();
     return recipe;
 }
@@ -77,7 +79,7 @@ static recipe_list_t *read_recipe_from_file(const char *path)
     if (fp == NULL) { perror("fopen"); exit(EXIT_FAILURE); }
     char line[RECIPE_MAX_LEN];
     recipe_list_t *recipe_list = create_new_recipe_list();
-    
+
     /* get all recipe and create a list of recipes */
     while (fgets(line, RECIPE_MAX_LEN, fp) != NULL) {
         /* printf("%s", recipe); */
