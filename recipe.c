@@ -8,14 +8,37 @@
  *  
  */
 #include <stdio.h>
+#include <stdlib.h>
 
-void print_recipe()
+/* params */
+const size_t RECIPE_MAX_LEN = 100;
+
+void print_usage(char *path)
 {
-    printf("オムライス\n");
+    fprintf(stderr, "Usage: %s recipe_path\n", path);
+}
+
+void print_recipe(const char *path)
+{
+    /* prepare file */
+    FILE *fp = fopen(path, "r");
+    if (fp == NULL) { perror("fopen"); exit(EXIT_FAILURE); }
+    char recipe[RECIPE_MAX_LEN];
+    /* print one recipe */
+    if (fgets(recipe, RECIPE_MAX_LEN, fp) != NULL) {
+        printf("%s", recipe);
+    }
 }
 
 int main(int argc, char *argv[])
 {
-    print_recipe();
+    /* check args */
+    if (argc < 2) {
+        print_usage(argv[0]);
+        exit(EXIT_FAILURE);
+    }
+    /* set args to each variants */
+    const char *recipe_path = argv[1];
+    print_recipe(recipe_path);
     return 0;
 }
