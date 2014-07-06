@@ -16,6 +16,9 @@ https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2/blob/master/recipe.
 ### 見つけたきっかけ
 * 全体の処理の流れを見るために、main関数を参照した。
 
+### 名前
+ロジックの分割
+
 ## 2つ目
 ### コード
 https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2/blob/master/recipe.c#L76 - 77
@@ -31,6 +34,9 @@ https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2/blob/master/recipe.
 ### 見つけたきっかけ
 * 実装前のコードリーディング
 
+### 名前
+一行に一つの意味
+
 ## 3つ目
 ### コード
 https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2/blob/master/recipe.c#L107
@@ -43,6 +49,9 @@ https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2/blob/master/recipe.
 
 ### 見つけたきっかけ
 * 実装前のコードリーティング
+
+### 名前
+ユーザビリティへの配慮
 
 ## 4つ目
 ### コード
@@ -64,9 +73,5 @@ https://github.com/BLThunder1991/amiq11-sezemi-2014-readable-code-2/blob/master/
 * 仕様7を実装するとき
     * URLの追加を行う際に、どこに追加すればよいかすぐ思いついた。
 
-## つ目
-### コード
-
-### いいところ
-
-### 見つけたきっかけ
+### 名前
+変数のカプセル化
