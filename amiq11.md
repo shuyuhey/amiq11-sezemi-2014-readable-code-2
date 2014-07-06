@@ -1,6 +1,11 @@
 amiq11?
 ======
 
+リンク
+----
+[@amiq11](https://twitter.com/amiq11)
+[tumblr](http://amiq11.tumblr.com)
+
 プログラミングに関するけいれき
 ---
 ロボコンとか
