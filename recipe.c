@@ -20,7 +20,7 @@ const size_t RECIPE_LIST_DEFAULT_SIZE = 1000;
 
 void print_usage(char *path)
 {
-    fprintf(stderr, "Usage: %s recipe_path\n", path);
+    fprintf(stderr, "Usage: %s recipe_path [option: recipe_num]\n", path);
 }
 
 inline void *mymalloc(size_t size) {
@@ -94,12 +94,18 @@ static recipe_list_t *read_recipe_from_file(const char *path)
 }
 
 /* print all recipes */
-void print_recipes(const recipe_list_t *list)
+void print_recipes(const recipe_list_t *list, int recipe_num)
 {
-    for (size_t i = 0; i < list->size; i++) {
-        recipe_t *r = list->list[i];
-        printf("%ld: %s\n", r->id, r->name);
-    }
+    if (recipe_num == -1){
+	    for (size_t i = 0; i < list->size; i++) {
+  		    recipe_t *r = list->list[i];
+		    printf("%ld: %s\n", r->id, r->name);
+		}
+	}else if (list->size > recipe_num)
+	    {
+		    recipe_t *r = list->list[recipe_num];
+			printf("%ld: %s\n", r->id, r->name);
+		}
 }
 
 int main(int argc, char *argv[])
@@ -109,9 +115,16 @@ int main(int argc, char *argv[])
         print_usage(argv[0]);
         exit(EXIT_FAILURE);
     }
+
+    /* option args check*/
+    int recipe_num = -1;
+    if (argc > 2) {
+      recipe_num = atoi(argv[2]);
+    }
+
     /* set args to each variants */
     const char *recipe_path = argv[1];
     recipe_list_t *recipe_list = read_recipe_from_file(recipe_path);
-    print_recipes(recipe_list);
+    print_recipes(recipe_list, recipe_num);
     return 0;
 }

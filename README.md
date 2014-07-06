@@ -9,12 +9,12 @@ amiq11-sezemi-2014-readable-code-2
     CCCCCC
   CCC    CCC
  CCC
- CCC      
+ CCC
   CCC    CCC
     CCCCCC
 ```
 
-使い方 (spec5) 
+使い方 (spec5)
 ------
 以下のコマンドで実行できます。
 ```
@@ -24,8 +24,13 @@ $ gcc -std=gnu99 -o recipe.bin recipe.c
 $ ./recipe.bin recipe_sample.txt
 ```
 
-レシピファイルはテキスト形式で、一行に一つのレシピを記述してください。  
-今回はその全てのレシピ、及び一意に振られたIDが表示されます。  
-IDは、先に記述されたものから順に0から連番で振られます。  
+また、IDを指定する（ID2のレシピを指定する）場合は以下のコマンドで実行します。
+```
+$ ./recipe.bin recipe_sample.txt 2
+```
+
+レシピファイルはテキスト形式で、一行に一つのレシピを記述してください。
+今回はその全てのレシピ、及び一意に振られたIDが表示されます。
+IDは、先に記述されたものから順に0から連番で振られます。
 
 メモはmemo.mdにspecごとに記述しています。
