@@ -5,4 +5,9 @@ amiq11-sezemi-2014-readable-code-2
 
 開発言語
 --------
-C
+    CCCCCC
+  CCC    CCC
+ CCC
+ CCC      
+  CCC    CCC
+    CCCCCC
