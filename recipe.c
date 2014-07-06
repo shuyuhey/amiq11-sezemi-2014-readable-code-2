@@ -28,13 +28,15 @@ inline void *mymalloc(size_t size) {
     return tmp;
 }
 
+/* generate an unique id */
 static recipe_id_t create_new_id()
 {
     static recipe_id_t latest_id = 0;
     return latest_id++;
 }
 
-static recipe_t *create_new_recipe(char *name)
+/* generate a recipe with unique id */
+static recipe_t *create_new_recipe(const char *name)
 {
     recipe_t *recipe = (recipe_t *)mymalloc(sizeof(recipe_t));
     /* init variables */
@@ -43,7 +45,7 @@ static recipe_t *create_new_recipe(char *name)
     return recipe;
 }
 
-
+/* create a list object */
 static recipe_list_t *create_new_recipe_list()
 {
     recipe_list_t *list = mymalloc(sizeof(recipe_list_t));
@@ -53,6 +55,7 @@ static recipe_list_t *create_new_recipe_list()
     return list;
 }
 
+/* append a recipe as a last element of list */
 static bool append_to_recipe_list(recipe_list_t *list, recipe_t *recipe)
 {
     if (list->size == list->alloced) {
@@ -66,6 +69,7 @@ static bool append_to_recipe_list(recipe_list_t *list, recipe_t *recipe)
     return true;
 }
 
+/* read a whole file and create a list which contains every recipe in the file */
 static recipe_list_t *read_recipe_from_file(const char *path)
 {
     /* prepare file */
@@ -87,6 +91,7 @@ static recipe_list_t *read_recipe_from_file(const char *path)
     return recipe_list;
 }
 
+/* print all recipes */
 void print_recipes(const recipe_list_t *list)
 {
     for (size_t i = 0; i < list->size; i++) {
