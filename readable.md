@@ -4,10 +4,11 @@
 ### コード
 https://github.com/amiq11/amiq11-sezemi-2014-readable-code-2/blob/master/recipe.c#L111 - 113
 
+```C
     const char *recipe_path = argv[1];
     recipe_list_t *recipe_list = read_recipe_from_file(recipe_path);
     print_recipes(recipe_list);
-
+```
 
 ### いいところ
 * main関数の中に、最低限の呼び出ししか置いていないことが良い。全体を通して、何をやりたいかが明確にわかる。
