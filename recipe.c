@@ -37,12 +37,14 @@ static recipe_id_t create_new_id()
 }
 
 /* generate a recipe with unique id */
-static recipe_t *create_new_recipe(const char *name)
+static recipe_t *create_new_recipe(const char *name, const char *url)
 {
     recipe_t *recipe = (recipe_t *)mymalloc(sizeof(recipe_t));
     /* init variables */
     recipe->name = (char *)mymalloc(sizeof(char) * strlen(name) + 1);
     sscanf(name, "%s", recipe->name);
+    recipe->url = (char *)mymalloc(sizeof(char) * strlen(url) + 1);
+    sscanf(url, "%s", recipe->url);
     recipe->id = create_new_id();
     return recipe;
 }
@@ -83,7 +85,9 @@ static recipe_list_t *read_recipe_from_file(const char *path)
     /* get all recipe and create a list of recipes */
     while (fgets(line, RECIPE_MAX_LEN, fp) != NULL) {
         /* printf("%s", recipe); */
-        recipe_t *recipe = create_new_recipe(line);
+		char name[256], url[256];
+		sscanf(line, "%s %s", &name, &url);
+        recipe_t *recipe = create_new_recipe(name, url);
         if (!append_to_recipe_list(recipe_list, recipe)) {
             fclose(fp);
             return NULL;
@@ -93,19 +97,17 @@ static recipe_list_t *read_recipe_from_file(const char *path)
     return recipe_list;
 }
 
+void print_recipe(const recipe_list_t *list, int recipe_num){
+	recipe_t *r = list->list[recipe_num];
+	printf("%ld: %s %s\n", r->id, r->name, r->url);
+}
+
 /* print all recipes */
-void print_recipes(const recipe_list_t *list, int recipe_num)
+void print_recipes(const recipe_list_t *list)
 {
-    if (recipe_num == -1){
-	    for (size_t i = 0; i < list->size; i++) {
-  		    recipe_t *r = list->list[i];
-		    printf("%ld: %s\n", r->id, r->name);
-		}
-	}else if (list->size > recipe_num)
-	    {
-		    recipe_t *r = list->list[recipe_num];
-			printf("%ld: %s\n", r->id, r->name);
-		}
+	for (size_t i = 0; i < list->size; i++) {
+		print_recipe(list, i);
+	}
 }
 
 int main(int argc, char *argv[])
@@ -125,6 +127,12 @@ int main(int argc, char *argv[])
     /* set args to each variants */
     const char *recipe_path = argv[1];
     recipe_list_t *recipe_list = read_recipe_from_file(recipe_path);
-    print_recipes(recipe_list, recipe_num);
-    return 0;
+
+	if (recipe_num == -1) {
+		print_recipes(recipe_list);
+
+	}else if (recipe_num < recipe_list->size){
+		print_recipe(recipe_list, recipe_num);
+	}
+	return 0;
 }
