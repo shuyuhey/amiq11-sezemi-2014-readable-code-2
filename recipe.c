@@ -9,8 +9,13 @@
  */
 #include <stdio.h>
 
-int main(int argc, char *argv[])
+void print_recipe()
 {
     printf("オムライス\n");
+}
+
+int main(int argc, char *argv[])
+{
+    print_recipe();
     return 0;
 }
